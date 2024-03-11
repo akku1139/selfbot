@@ -1,4 +1,6 @@
 #discord.py-self
-git+https://github.com/dolfies/discord.py-self@renamed # TODO Commit固定
+git+https://github.com/dolfies/discord.py-self@0664ccfbd665ec009e051f0d279839be069ca2a4
+
 python-dotenv
+
 #google-generativeai # Rust要るっぽいのでやめた
