@@ -17,7 +17,7 @@ class GitCog(commands.Cog):
   async def pull(self, ctx: commands.Context):
     stdout = subprocess.run(["git","pull"], capture_output=True, text=True).stdout
     log.info("git pull")
-    await ctx.send(f"```{stdout}```")
+    await ctx.reply(f"```{stdout}```")
 
 async def setup(bot):
   await bot.add_cog(GitCog(bot))
