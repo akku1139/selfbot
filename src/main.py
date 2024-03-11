@@ -2,7 +2,7 @@ from discord.ext import commands
 import discord
 
 from dotenv import load_dotenv
-load_dotenv("../.env")
+load_dotenv()
 
 import os, json, logging
 log = logging.getLogger("main")
