@@ -14,7 +14,7 @@ class GitCog(commands.Cog):
     log.info("loaded")
 
   @commands.command(hidden=True)
-  async def pull(self, ctx: commands.Context, sub: str):
+  async def pull(self, ctx: commands.Context):
     stdout = subprocess.run(["git","pull"], capture_output=True, text=True).stdout
     log.info("git pull")
     await ctx.send(f"```{stdout}```")
