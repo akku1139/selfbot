@@ -13,13 +13,11 @@ class GitCog(commands.Cog):
   async def on_ready(self):
     log.info("loaded")
 
-  @commands.command()
-  async def git(self, ctx: commands.Context, sub: str):
-    match sub:
-      case "pull":
-        stdout = subprocess.run(["git","pull"], capture_output=True, text=True).stdout
-        log.info("git pull")
-        await ctx.send(f"```{stdout}```")
+  @commands.command(hidden=True)
+  async def pull(self, ctx: commands.Context, sub: str):
+    stdout = subprocess.run(["git","pull"], capture_output=True, text=True).stdout
+    log.info("git pull")
+    await ctx.send(f"```{stdout}```")
 
 async def setup(bot):
   await bot.add_cog(GitCog(bot))

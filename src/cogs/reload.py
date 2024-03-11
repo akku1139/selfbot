@@ -11,7 +11,7 @@ class ReloadCog(commands.Cog):
   async def on_ready(self):
     log.info("loaded")
 
-  @commands.command()
+  @commands.command(hidden=True)
   async def reload(self, ctx: commands.Context, cog: str = ""):
     match cog:
       case "":
