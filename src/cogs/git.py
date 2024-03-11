@@ -3,7 +3,7 @@ from discord.ext import commands
 import logging
 log = logging.getLogger("cogs.git")
 
-import os
+import subprocess
 
 class MyCog(commands.Cog):
   def __init__(self, bot: commands.Bot):
@@ -17,7 +17,9 @@ class MyCog(commands.Cog):
   async def git(self, ctx: commands.Context, sub: str):
     match sub:
       case "pull":
-        os.system("git pull")
+        stdout = subprocess.run(["git","pull"], capture_output=True, text=True).stdout
+        log.info("git pull")
+        await ctx.send(f"```{stdout}```")
 
 async def setup(bot):
   await bot.add_cog(MyCog(bot))
