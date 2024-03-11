@@ -12,8 +12,8 @@ class ReloadCog(commands.Cog):
     log.info("loaded")
 
   @commands.command(hidden=True)
-  async def load(self, ctx, name):
-    await self.bot.load_extension("cogs."+name)
+  async def load(self, ctx, cog: str):
+    await self.bot.load_extension(f"cogs.{cog}")
 
   @commands.command(hidden=True)
   async def reload(self, ctx: commands.Context, cog: str = ""):
