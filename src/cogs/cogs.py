@@ -1,7 +1,7 @@
 from selfcord.ext import commands
 
 import logging
-log = logging.getLogger("cogs.reload")
+log = logging.getLogger("cogs.cogs")
 
 class ReloadCog(commands.Cog):
   def __init__(self, bot: commands.Bot):
@@ -10,6 +10,10 @@ class ReloadCog(commands.Cog):
   @commands.Cog.listener()
   async def on_ready(self):
     log.info("loaded")
+
+  @commands.command(hidden=True)
+  async def load(self, ctx, name):
+    await self.bot.load_extension(name)
 
   @commands.command(hidden=True)
   async def reload(self, ctx: commands.Context, cog: str = ""):
