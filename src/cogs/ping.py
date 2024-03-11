@@ -3,7 +3,7 @@ from selfcord.ext import commands
 import logging
 log = logging.getLogger("cogs.example")
 
-class ExampleCog(commands.Cog):
+class PingCog(commands.Cog):
   def __init__(self, bot: commands.Bot):
     self.bot = bot
 
@@ -16,4 +16,4 @@ class ExampleCog(commands.Cog):
     await ctx.send(f"ping: {self.bot.latency} sec")
 
 async def setup(bot):
-  await bot.add_cog(ExampleCog(bot))
+  await bot.add_cog(PingCog(bot))
