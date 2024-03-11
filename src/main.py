@@ -4,10 +4,10 @@ import selfcord
 from dotenv import load_dotenv
 load_dotenv()
 
-import os, json, logging, asyncio
-log = logging.getLogger("main")
-
 from log_handler import DiscordWebHookHandler
+import os, json, logging, asyncio
+selfcord.utils.setup_logging(handler=DiscordWebHookHandler(), root=True)
+log = logging.getLogger("main")
 
 TOKEN = os.environ["DISCORD_TOKEN"]
 
@@ -36,4 +36,4 @@ async def on_message(m: selfcord.Message):
 if __name__ == "__main__":
   while True:
     asyncio.run(load_cogs())
-    bot.run(TOKEN, log_handler=DiscordWebHookHandler())
+    bot.run(TOKEN, log_handler=None)
