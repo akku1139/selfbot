@@ -28,8 +28,21 @@ async def setup_hook():
       await bot.load_extension(f"cogs.{cog[:-3]}")
   log.info("cogs loaded")
 
+replaces = {
+  "な": "にゃ",
+  "https://x.com/": "https://fxtwitter.com/",
+  "https://twitter.com/": "https://fxtwitter.com/",
+}
+
 @bot.event
 async def on_message(m: selfcord.Message):
+  if m.author.id == bot.user.id:
+    c = m.content
+    for word in replaces:
+      if word in c:
+        c = c.replace(word, replaces[word])
+    await m.edit(content=c)
+
   # ガバガバ権限管理
   if str(m.author.id) in users:
     await bot.process_commands(m)
