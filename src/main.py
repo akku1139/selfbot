@@ -41,7 +41,8 @@ async def on_message(m: selfcord.Message):
     for word in replaces:
       if word in c:
         c = c.replace(word, replaces[word])
-    await m.edit(content=c)
+    if m.content != c:
+      await m.edit(content=c)
 
   # ガバガバ権限管理
   if str(m.author.id) in users:
