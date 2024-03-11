@@ -45,7 +45,7 @@ async def on_message(m: selfcord.Message):
       await m.edit(content=c)
 
   # ガバガバ権限管理
-  if str(m.author.id) in users:
+  if (str(m.author.id) in users) and (m.content.startswith("^")):
     log.info(
       "Command executed\n" +
       f"by: {m.author.name} ({m.author.id})\n" +
