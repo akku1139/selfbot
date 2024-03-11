@@ -1,5 +1,5 @@
-from discord.ext import commands
-import discord
+from selfcord.ext import commands
+import selfcord
 
 from dotenv import load_dotenv
 load_dotenv()
@@ -30,7 +30,7 @@ async def on_ready():
   log.info("booted")
 
 @bot.event
-async def on_message(m: discord.Message):
+async def on_message(m: selfcord.Message):
   # ガバガバ権限管理
   if m.author.id in users:
     await bot.process_commands(m)

@@ -1,4 +1,4 @@
-from discord.ext import commands
+from selfcord.ext import commands
 
 import logging
 log = logging.getLogger("cogs.reload")
