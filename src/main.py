@@ -27,10 +27,14 @@ async def load_cogs():
       await bot.load_extension(f"cogs.{cog[:-3]}")
   log.info("cogs loaded")
 
+@bot.command(name="ping")
+async def ping_cmd(ctx: commands.Context):
+  await ctx.send(f"ping: {bot.latency} sec")
+
 @bot.event
 async def on_message(m: selfcord.Message):
   # ガバガバ権限管理
-  if m.author.id in users:
+  if str(m.author.id) in users:
     await bot.process_commands(m)
 
 if __name__ == "__main__":
