@@ -37,4 +37,4 @@ async def on_message(m: discord.Message):
 
 if __name__ == "__main__":
   while True:
-    bot.run(TOKEN, log_handler=log.DiscordWebHookHandler)
+    bot.run(TOKEN, log_handler=log.DiscordWebHookHandler())
