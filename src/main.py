@@ -22,12 +22,12 @@ with open("data/users.json") as fp:
   users = json.load(fp)
 
 @bot.event
-async def on_ready():
+async def setup_hook():
   for cog in os.listdir("src/cogs/"):
     if cog.endswith(".py"):
       await bot.load_extension(f"cogs.{cog[:-3]}")
 
-  log.info("booted")
+  log.info("cogs loaded")
 
 @bot.event
 async def on_message(m: selfcord.Message):
