@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 from log_handler import DiscordWebHookHandler
-import os, json, logging, asyncio, time
+import os, json, logging, asyncio, time, subprocess
 selfcord.utils.setup_logging(handler=DiscordWebHookHandler(), root=True)
 log = logging.getLogger("main")
 
@@ -41,3 +41,5 @@ if __name__ == "__main__":
     except Exception as e:
       log.error(e)
       time.sleep(5)
+      stdout = subprocess.run(["git","pull"], capture_output=True, text=True).stdout
+      log.info("git pull\n"+stdout)
