@@ -1,9 +1,9 @@
 from selfcord.ext import commands
 
 import logging
-log = logging.getLogger("cogs.cogs")
+log = logging.getLogger(__name__)
 
-class ReloadCog(commands.Cog):
+class ReloadCog(commands.Cog, name = __name__):
   def __init__(self, bot: commands.Bot):
     self.bot = bot
 

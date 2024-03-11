@@ -1,11 +1,11 @@
 from selfcord.ext import commands
 
 import logging
-log = logging.getLogger("cogs.counting")
+log = logging.getLogger(__name__)
 
 import subprocess
 
-class CountingCog(commands.Cog):
+class CountingCog(commands.Cog, name = __name__):
   def __init__(self, bot: commands.Bot):
     self.bot = bot
 

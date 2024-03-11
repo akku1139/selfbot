@@ -1,7 +1,7 @@
 from selfcord.ext import commands
 
 import logging
-log = logging.getLogger("cogs.help")
+log = logging.getLogger(__name__)
 
 class Help(commands.HelpCommand):
   def __init__(self):

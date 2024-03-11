@@ -1,11 +1,11 @@
 from selfcord.ext import commands
 
 import logging
-log = logging.getLogger("cogs.git")
+log = logging.getLogger(__name__)
 
 import subprocess
 
-class GitCog(commands.Cog):
+class GitCog(commands.Cog, name = __name__):
   def __init__(self, bot: commands.Bot):
     self.bot = bot
 
