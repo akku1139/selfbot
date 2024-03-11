@@ -1,7 +1,7 @@
 from selfcord.ext import commands
 
 import logging
-log = logging.getLogger("cogs.example")
+log = logging.getLogger("cogs.ping")
 
 class PingCog(commands.Cog):
   def __init__(self, bot: commands.Bot):
