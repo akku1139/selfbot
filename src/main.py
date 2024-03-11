@@ -23,7 +23,7 @@ with open("data/users.json") as fp:
 
 @bot.event
 async def on_ready():
-  for cog in os.listdir("cogs/"):
+  for cog in os.listdir("src/cogs/"):
     if cog.endswith(".py"):
       await bot.load_extension(f"cogs.{cog[:-3]}")
 
