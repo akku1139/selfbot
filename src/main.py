@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 from log_handler import DiscordWebHookHandler
-import os, json, logging, asyncio
+import os, json, logging, asyncio, time
 selfcord.utils.setup_logging(handler=DiscordWebHookHandler(), root=True)
 log = logging.getLogger("main")
 
@@ -21,15 +21,12 @@ TODO: レベル対応表作る
 with open("data/users.json") as fp:
   users = json.load(fp)
 
-async def load_cogs():
+@bot.event
+async def setup_hook():
   for cog in os.listdir("src/cogs/"):
     if cog.endswith(".py"):
       await bot.load_extension(f"cogs.{cog[:-3]}")
   log.info("cogs loaded")
-
-@bot.command(name="ping")
-async def ping_cmd(ctx: commands.Context):
-  await ctx.send(f"ping: {bot.latency} sec")
 
 @bot.event
 async def on_message(m: selfcord.Message):
@@ -39,5 +36,8 @@ async def on_message(m: selfcord.Message):
 
 if __name__ == "__main__":
   while True:
-    asyncio.run(load_cogs())
-    bot.run(TOKEN, log_handler=None)
+    try:
+      bot.run(TOKEN, log_handler=None)
+    except Exception as e:
+      log.error(e)
+      time.sleep(5)

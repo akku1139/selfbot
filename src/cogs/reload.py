@@ -3,8 +3,6 @@ from selfcord.ext import commands
 import logging
 log = logging.getLogger("cogs.reload")
 
-import os
-
 class ReloadCog(commands.Cog):
   def __init__(self, bot: commands.Bot):
     self.bot = bot
