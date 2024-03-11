@@ -13,7 +13,7 @@ class ReloadCog(commands.Cog):
 
   @commands.command(hidden=True)
   async def load(self, ctx, name):
-    await self.bot.load_extension(name)
+    await self.bot.load_extension("cogs."+name)
 
   @commands.command(hidden=True)
   async def reload(self, ctx: commands.Context, cog: str = ""):
