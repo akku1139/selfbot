@@ -25,6 +25,7 @@ class ReloadCog(commands.Cog):
     match cog:
       case "":
         log.info("reload bot")
+        await ctx.reply("restart bot")
         await self.bot.close()
 
       case _:
