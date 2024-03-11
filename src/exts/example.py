@@ -13,7 +13,7 @@ class ExampleCog(commands.Cog, name = __name__):
 
   # @commands.command()
   # async def ping(self, ctx: commands.Context):
-  #   await ctx.send(f"ping: {self.bot.latency} sec")
+  #   await ctx.reply(f"ping: {self.bot.latency} sec")
 
 async def setup(bot: commands.Bot):
   await bot.add_cog(ExampleCog(bot))
