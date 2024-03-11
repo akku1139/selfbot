@@ -23,10 +23,10 @@ with open("data/users.json") as fp:
 
 @bot.event
 async def setup_hook():
-  for cog in os.listdir("src/cogs/"):
+  for cog in os.listdir("src/exts/"):
     if cog.endswith(".py"):
-      await bot.load_extension(f"cogs.{cog[:-3]}")
-  log.info("cogs loaded")
+      await bot.load_extension(f"exts.{cog[:-3]}")
+  log.info("exts loaded")
 
 replaces = {
   "な": "にゃ",

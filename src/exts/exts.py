@@ -12,13 +12,13 @@ class ReloadCog(commands.Cog):
     log.info("loaded")
 
   @commands.command(hidden=True)
-  async def cogs(self, ctx: commands.Context, cog: str):
-    await ctx.reply(str(self.bot.cogs.keys))
+  async def exts(self, ctx: commands.Context):
+    await ctx.reply(str(list(self.bot.extensions.keys())))
 
   @commands.command(hidden=True)
   async def load(self, ctx: commands.Context, cog: str):
-    await self.bot.load_extension(f"cogs.{cog}")
-    await ctx.reply(f"✅ cogs.{cog} is loaded")
+    await self.bot.load_extension(f"exts.{cog}")
+    await ctx.reply(f"✅ exts.{cog} is loaded")
 
   @commands.command(hidden=True)
   async def reload(self, ctx: commands.Context, cog: str = ""):
@@ -28,9 +28,9 @@ class ReloadCog(commands.Cog):
         await self.bot.close()
 
       case _:
-        await self.bot.reload_extension(f"cogs.{cog}")
-        await ctx.reply(f"🔄 reload cogs.{cog}")
-        log.info(f"reload cogs.{cog}")
+        await self.bot.reload_extension(f"exts.{cog}")
+        await ctx.reply(f"🔄 reload exts.{cog}")
+        log.info(f"reload exts.{cog}")
 
 async def setup(bot):
   await bot.add_cog(ReloadCog(bot))
