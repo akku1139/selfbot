@@ -5,7 +5,7 @@ log = logging.getLogger("cogs.git")
 
 import subprocess
 
-class MyCog(commands.Cog):
+class GitCog(commands.Cog):
   def __init__(self, bot: commands.Bot):
     self.bot = bot
 
@@ -22,4 +22,4 @@ class MyCog(commands.Cog):
         await ctx.send(f"```{stdout}```")
 
 async def setup(bot):
-  await bot.add_cog(MyCog(bot))
+  await bot.add_cog(GitCog(bot))

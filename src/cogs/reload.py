@@ -5,7 +5,7 @@ log = logging.getLogger("cogs.reload")
 
 import os
 
-class MyCog(commands.Cog):
+class ReloadCog(commands.Cog):
   def __init__(self, bot: commands.Bot):
     self.bot = bot
 
@@ -25,4 +25,4 @@ class MyCog(commands.Cog):
         await self.bot.reload_extension(f"cogs.{cog}")
 
 async def setup(bot):
-  await bot.add_cog(MyCog(bot))
+  await bot.add_cog(ReloadCog(bot))
