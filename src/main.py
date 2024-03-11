@@ -7,7 +7,7 @@ load_dotenv()
 import os, json, logging
 log = logging.getLogger("main")
 
-import log_handler
+from log_handler import DiscordWebHookHandler
 
 TOKEN = os.environ["DISCORD_TOKEN"]
 
@@ -35,6 +35,7 @@ async def on_message(m: selfcord.Message):
   if m.author.id in users:
     await bot.process_commands(m)
 
+
 if __name__ == "__main__":
   while True:
-    bot.run(TOKEN, log_handler=log.DiscordWebHookHandler())
+    bot.run(TOKEN, log_handler=DiscordWebHookHandler())
