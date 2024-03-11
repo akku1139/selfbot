@@ -46,6 +46,11 @@ async def on_message(m: selfcord.Message):
 
   # ガバガバ権限管理
   if str(m.author.id) in users:
+    log.info(
+      "Command executed\n" +
+      f"by: {m.author.name} ({m.author.id})\n" +
+      m.content
+    )
     await bot.process_commands(m)
 
 if __name__ == "__main__":
