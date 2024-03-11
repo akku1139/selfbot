@@ -9,5 +9,5 @@ class Help(commands.HelpCommand):
       show_hidden=False, # 隠しコマンドを表示するかどうか
     )
 
-async def setup(bot):
+async def setup(bot: commands.Bot):
   bot.help_command = Help()
