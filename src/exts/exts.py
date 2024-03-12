@@ -22,7 +22,7 @@ class ReloadCog(commands.Cog, name = __name__):
 
   @commands.command(hidden=True)
   async def unload(self, ctx: commands.Context, ext: str):
-    await self.bot.load_extension(f"exts.{ext}")
+    await self.bot.unload_extension(f"exts.{ext}")
     await ctx.reply(f"🗑 exts.{ext} is unloaded")
 
   @commands.command(hidden=True)
