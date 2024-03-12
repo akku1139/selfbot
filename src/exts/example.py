@@ -17,3 +17,6 @@ class ExampleCog(commands.Cog, name = __name__):
 
 async def setup(bot: commands.Bot):
   await bot.add_cog(ExampleCog(bot))
+
+async def teardown(bot):
+  log.info("unloaded")
