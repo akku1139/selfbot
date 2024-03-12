@@ -1,6 +1,6 @@
 from selfcord.ext import commands
 
-import logging
+import logging, typing
 log = logging.getLogger(__name__)
 
 class Help(commands.HelpCommand):
@@ -12,6 +12,9 @@ class Help(commands.HelpCommand):
         "description": '{"level":50}',
       }
     )
+
+  async def send_bot_help(self, mapping):
+    await self.get_destination().send("test help")
 
 async def setup(bot: commands.Bot):
   bot.help_command = Help()
