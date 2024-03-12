@@ -45,7 +45,7 @@ class PermissionCog(commands.Cog, name = __name__):
     log.info("loaded")
 
   @commands.command(hidden=True)
-  async def user_add(self, ctx: commands.Context, *,
+  async def user_add(self, ctx: commands.Context,
     target: int, nick: str = "", desc = "",
   ):
     if not (user := self.bot.get_user(target)):
