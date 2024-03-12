@@ -11,7 +11,7 @@ class ExampleCog(commands.Cog, name = __name__):
   async def on_ready(self):
     log.info("loaded")
 
-  # @commands.command()
+  # @commands.command(description='{"level":50}') # 誰でも叩ける
   # async def ping(self, ctx: commands.Context):
   #   await ctx.reply(f"ping: {self.bot.latency} sec")
 
