@@ -18,7 +18,7 @@ class Help(commands.HelpCommand):
   ):
     await self.get_destination().send(
       "```"+
-      "Usage:	^command [option] ...\n"+
+      "Usage: ^command [option] ...\n"+
       # "Commands:\n"+cmds+"\n"
       "License AGPLv3+: GNU AGPL version 3 or later <https://www.gnu.org/licenses/agpl-3.0.html>.\n"+
       "Source Code: https://github.com/akku1139/selfbot\n```"
