@@ -5,21 +5,13 @@ from dotenv import load_dotenv
 load_dotenv()
 
 from log_handler import DiscordWebHookHandler
-import os, json, logging, asyncio, subprocess
+import os, logging, asyncio, subprocess
 selfcord.utils.setup_logging(handler=DiscordWebHookHandler(), root=True)
 log = logging.getLogger("main")
 
 TOKEN = os.environ["DISCORD_TOKEN"]
 
 bot = commands.Bot(command_prefix="^")
-
-# 権限処理
-"""
-{ユーザーid: レベル}
-TODO: レベル対応表作る
-"""
-with open("data/users.json") as fp:
-  users = json.load(fp)
 
 @bot.event
 async def setup_hook():
@@ -44,14 +36,9 @@ async def on_message(m: selfcord.Message):
     if m.content != c:
       await m.edit(content=c)
 
-  # ガバガバ権限管理
-  if (str(m.author.id) in users) and (m.content.startswith("^")):
-    log.info(
-      "Command executed\n" +
-      f"by: {m.author.name} ({m.author.id})\n" +
-      m.content
-    )
-    await bot.process_commands(m)
+  if m.content.startswith("^"):
+    if(perm := bot.extensions.get("exts.permission")):
+      getattr(perm, "cmd_main")(bot, m)
 
 if __name__ == "__main__":
   try:
