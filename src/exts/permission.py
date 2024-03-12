@@ -44,24 +44,16 @@ class PermissionCog(commands.Cog, name = __name__):
 
   @commands.command(hidden=True)
   async def user_add(self, ctx: commands.Context, *,
-    user: int | selfcord.User, nick: str = "", desc = "",
+    user: selfcord.User, nick: str = "", desc = "",
   ):
-    if type(user) is int:
-      target = user
-    elif (type(user) is selfcord.User) or (type(user) is selfcord.Member):
-      target = user.id
-    else:
-      await ctx.reply("何かが上手く行かなかった")
-      return
-
-    users[str(target)] = {
+    users[str(user.id)] = {
       "level": 10,
-      "name": ctx.author.name,
+      "name": user.name,
       "nick": nick,
       "desc": desc,
     }
-
-    await ctx.reply(f"<@{target}> にレベル10の権限を追加")
+    save_users()
+    await ctx.reply(f"<@{user.id}> にレベル10の権限を追加")
 
 async def setup(bot: commands.Bot):
   await bot.add_cog(PermissionCog(bot))
