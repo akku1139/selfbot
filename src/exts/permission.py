@@ -5,13 +5,34 @@ import logging, json
 log = logging.getLogger(__name__)
 
 """
-{ユーザーid: レベル}
+{
+  ユーザーid: {
+    "level": "レベル",
+    "name"?: "Discordユーザー名",
+    "nick"?: "ニックネーム",
+    "desc"?: "理由",
+  }
+}
+
 レベル1が最も高い
 コマンド必要レベル >= ユーザーレベル
 なら権限あり
+
+権限レベルリスト
+1: akku
+10: 一般ユーザー
+50: 現在最低権限
 """
-with open("data/users.json") as fp:
-  users = json.load(fp)
+
+users = {}
+
+def save_users():
+  global users
+  with open("data/users.json", "w") as fp:
+    json.dump(users, fp)
+
+  with open("data/users.json") as fp:
+    users = json.load(fp)
 
 class PermissionCog(commands.Cog, name = __name__):
   def __init__(self, bot: commands.Bot):
@@ -21,9 +42,16 @@ class PermissionCog(commands.Cog, name = __name__):
   async def on_ready(self):
     log.info("loaded")
 
-  # @commands.command()
-  # async def ping(self, ctx: commands.Context):
-  #   await ctx.reply(f"ping: {self.bot.latency} sec")
+  @commands.command(hidden=True)
+  async def user_add(self, ctx: commands.Context, *,
+    user: int | selfcord.User, nick: str = "", desc = "",
+  ):
+    users[str(ctx.author.id)] = {
+      "level": 10,
+      "name": ctx.author.name,
+      "nick": nick,
+      "desc": desc,
+    }
 
 async def setup(bot: commands.Bot):
   await bot.add_cog(PermissionCog(bot))
@@ -48,7 +76,7 @@ async def cmd_main(bot: commands.Bot, m: selfcord.Message):
   if str(m.author.id) not in users:
     return
   
-  if desc["level"] >= users[str(m.author.id)]:
+  if desc["level"] >= users[str(m.author.id)]["level"]:
     log.info(
       "Command executed\n" +
       f"by: {m.author.name} ({m.author.id})\n" +
