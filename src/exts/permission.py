@@ -45,10 +45,10 @@ async def cmd_main(bot: commands.Bot, m: selfcord.Message):
 
   # 権限を確認する
   # まずは存在しない場合除去
-  if m.author.id not in users:
+  if str(m.author.id) not in users:
     return
   
-  if desc["level"] >= users[m.author.id]:
+  if desc["level"] >= users[str(m.author.id)]:
     log.info(
       "Command executed\n" +
       f"by: {m.author.name} ({m.author.id})\n" +
