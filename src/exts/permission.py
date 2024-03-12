@@ -40,7 +40,7 @@ async def cmd_main(bot: commands.Bot, m: selfcord.Message):
 
   desc = {
     **default_description,
-    **json.loads(run_cmd[0].description)
+    **json.loads(run_cmd[0].description or "{}")
   }
 
   # 権限を確認する
