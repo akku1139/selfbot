@@ -38,7 +38,7 @@ async def on_message(m: selfcord.Message):
 
   if m.content.startswith("^"):
     if(perm := bot.extensions.get("exts.permission")):
-      getattr(perm, "cmd_main")(bot, m)
+      await (getattr(perm, "cmd_main"))(bot, m)
 
 if __name__ == "__main__":
   try:
