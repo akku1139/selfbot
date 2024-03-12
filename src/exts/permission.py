@@ -61,6 +61,12 @@ class PermissionCog(commands.Cog, name = __name__):
     save_users()
     await ctx.reply(f"<@{user.id}> にレベル10の権限を追加")
 
+    @commands.command(hidden=True)
+    async def user_del(self, ctx: commands.Context, target: int):
+      users.pop(str(target))
+      save_users()
+      await ctx.reply(f"<@{target}> の権限を剥奪")
+
 default_description = {
   "level": 1,
 }
