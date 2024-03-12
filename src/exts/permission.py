@@ -25,6 +25,8 @@ log = logging.getLogger(__name__)
 """
 
 users = {}
+with open("data/users.json") as fp:
+  users = json.load(fp)
 
 def save_users():
   global users
@@ -55,9 +57,6 @@ class PermissionCog(commands.Cog, name = __name__):
     save_users()
     await ctx.reply(f"<@{user.id}> にレベル10の権限を追加")
 
-async def setup(bot: commands.Bot):
-  await bot.add_cog(PermissionCog(bot))
-
 default_description = {
   "level": 1,
 }
@@ -85,3 +84,6 @@ async def cmd_main(bot: commands.Bot, m: selfcord.Message):
       m.content
     )
     await bot.process_commands(m)
+
+async def setup(bot: commands.Bot):
+  await bot.add_cog(PermissionCog(bot))
