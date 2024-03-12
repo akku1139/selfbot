@@ -46,8 +46,12 @@ class PermissionCog(commands.Cog, name = __name__):
 
   @commands.command(hidden=True)
   async def user_add(self, ctx: commands.Context, *,
-    user: selfcord.User, nick: str = "", desc = "",
+    target: int, nick: str = "", desc = "",
   ):
+    if not (user := self.bot.get_user(target)):
+      await ctx.reply("ユーザーが見つからなかった")
+      return
+
     users[str(user.id)] = {
       "level": 10,
       "name": user.name,
